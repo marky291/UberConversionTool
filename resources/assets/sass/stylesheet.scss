@@ -1,0 +1,53 @@
+
+$blue-accent: #385c81;
+
+.standout {
+  margin-bottom: 1em;
+  line-height: 3em!important;
+  background-color: $blue-accent;
+  color: white !important;
+  padding: 0 10px !important;
+  border-radius: 3px !important;
+  margin-bottom: 1em !important;
+  align-items: center;
+
+  h5 {
+    margin: 0 !important;
+  }
+
+}
+
+.box-shadow {
+  box-shadow: 0px 2px 10px 0px #f1f1f1
+}
+
+.image {
+  display: inline-block;
+}
+
+.items {
+  display: flex;
+
+  .item {
+    flex: 1;
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid rgba(56, 92, 129, 0.19);
+    box-shadow: 0px 2px 7px 1px #f1f1f1;
+    background-color: white;
+
+    .cards {
+      display: flex;
+      .item-card {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}
+
+.landing.container {
+  height: 75vh;
+  display: flex;
+  align-items: center;
+}
