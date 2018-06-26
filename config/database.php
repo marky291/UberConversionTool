@@ -39,7 +39,7 @@ return [
             'database' => env('BG_DATABASE', 'xilero'),
             'username' => env('BG_USERNAME', 'root'),
             'password' => env('BG_PASSWORD', ''),
-            'port' => env('DB_PORT', '3306'),
+            'port' => env('BG_DB_PORT', '3306'),
         ],
 
         'sqlite' => [
