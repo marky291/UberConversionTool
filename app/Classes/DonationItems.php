@@ -30,28 +30,20 @@ class DonationItems extends Collection
      */
     public function getName($item)
     {
-        if ($item instanceof ItemInterface) {
-            return $this->get($item->nameid)['name'];
-        }
-
-        return $this->get($item)['name'];
+        return $this->lookup($item)['name'];
     }
 
     /**
      * Get the item name of the item passed from donations.
      * We can only retrive convertable items.
      *
-     * @param ItemInterface $item
-     * @return
+     * @param ItemInterface|int $item
+     * @return double
      * @throws \Exception
      */
     public function getPrice($item)
     {
-        if ($item instanceof ItemInterface) {
-            return $this->get($item->nameid)['price'];
-        }
-
-        return $this->get($item)['price'];
+        return $this->lookup($item)['price'];
     }
 
     /**
@@ -108,7 +100,7 @@ class DonationItems extends Collection
      */
     public function getCardCollection(ItemInterface $item)
     {
-        return $this->parseDonatableItems(collect([$item->card0, $item->card1, $item->card2, $item->card3])->filter());
+        return $this->filterDonatable(collect([$item->card0, $item->card1, $item->card2, $item->card3])->filter());
     }
 
     /**
@@ -117,10 +109,25 @@ class DonationItems extends Collection
      * @param Collection $items
      * @return Collection
      */
-    private function parseDonatableItems(Collection $items)
+    private function filterDonatable(Collection $items)
     {
         return $items->filter(function($item) {
             return $this->has($item);
         });
+    }
+
+    /**
+     * Lookup an item using the interface or with an integer.
+     *
+     * @param ItemInterface|int $item The passed item for lookup.
+     * @return array The array of the item from configuration.
+     */
+    private function lookup($item)
+    {
+        if ($item instanceof ItemInterface) {
+            return $this->get($item->nameid);
+        }
+
+        return $this->get($item);
     }
 }
