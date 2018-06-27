@@ -48,10 +48,10 @@ class DonationItems extends Collection
     public function getPrice($item)
     {
         if ($item instanceof ItemInterface) {
-            return round($this->get($item->nameid)['price'], 2);
+            return $this->get($item->nameid)['price'];
         }
 
-        return round($this->get($item)['price'], 2);
+        return $this->get($item)['price'];
     }
 
     /**
