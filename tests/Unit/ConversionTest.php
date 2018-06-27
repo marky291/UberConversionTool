@@ -103,6 +103,15 @@ class ConversionTest extends TestCase
         $this->assertDatabaseHas('uber_balance', ['account_id' => $user->account_id], 'xilero_bg');
     }
 
+    public function test_item_with_decimals_correctly_get_priced()
+    {
+       $collection =  $this->collect('App\Inventory', ['nameid' => 3132, 'amount' => 9, 'refine' => 0, 'card0' => 0, 'card1' => 0, 'card2' => 0, 'card3' => 0], 1);
+
+       $conversion = new Conversions($collection, app(DonationItems::class));
+
+       $this->assertEquals(0.90, $conversion->getTotalPrice());
+    }
+
 
     private function generateItems()
     {

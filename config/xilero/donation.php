@@ -1005,7 +1005,7 @@ return [
             'price' => '20' // $20.00
         ],
         [
-            'id' => '3180',
+            'id' => '3435',
             'name' => 'Chakra Wings',
             'price' => '20' // $20.00
         ],
@@ -1667,6 +1667,87 @@ return [
             'name' => 'GG',
             'price' => '20',
             'id' => '3167'
+        ],
+        [
+            'name' => 'Victory Badges',
+            'price' => '0.10',
+            'id' => '22556'
+        ],
+        [
+            'name' => 'Creamhilt Token',
+            'price' => '0.10',
+            'id' => '3115'
+        ],
+        [
+            'name' => 'Sbanhealt Token',
+            'price' => '0.10',
+            'id' => '3116'
+        ],
+        [
+            'name' => 'Lazrigees Token',
+            'price' => '0.10',
+            'id' => '3117'
+        ],
+        [
+            'name' => 'Squagul Token',
+            'price' => '0.10',
+            'id' => '3118'
+        ],
+        [
+            'name' => 'Guindull Token',
+            'price' => '0.10',
+            'id' => '3119'
+        ],
+        [
+            'name' => 'Zhulinxian Token',
+            'price' => '0.10',
+            'id' => '3114'
+        ],
+        [
+            'name' => 'Oxylus Helm',
+            'price' => '40',
+            'id' => '15020'
+        ],
+        [
+            'name' => 'Oxylus Wings',
+            'price' => '40',
+            'id' => '15021'
+        ],
+        [
+            'name' => 'Oxylus Aura',
+            'price' => '40',
+            'id' => '15022'
+        ],
+        [
+            'name' => 'Oxylus Robe',
+            'price' => '40',
+            'id' => '15023'
+        ],
+        [
+            'name' => 'Seal of Power',
+            'price' => '0.10',
+            'id' => '3130'
+        ],
+        [
+            'name' => 'Seal of Wisdom',
+            'price' => '0.10',
+            'id' => '3131'
+        ],
+        [
+            'name' => 'Seal of Spirit',
+            'price' => '0.10',
+            'id' => '3132',
+            'refine' => false
+        ],
+        [
+            'name' => 'Seal of Hate',
+            'price' => '0.10',
+            'id' => '3133'
+        ],
+        [
+            'name' => 'Seal of Death',
+            'price' => '0.10',
+            'id' => '3134'
         ],
         [
             'name' => 'RPA',

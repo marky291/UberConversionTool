@@ -81,7 +81,7 @@ class DonationItems extends Collection
      */
     public function getPriceBasedOnRefineCount(ItemInterface $item)
     {
-        if (isset($this->get($item->nameid)['refine'])) {
+        if (isset($this->get($item->nameid)['refine']) && $this->get($item->nameid)['refine'] == false) {
             return $this->getPrice($item->nameid) * $item->amount;
         }
 
