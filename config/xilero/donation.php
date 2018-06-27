@@ -1671,37 +1671,44 @@ return [
         [
             'name' => 'Victory Badges',
             'price' => '0.10',
-            'id' => '22556'
+            'id' => '22556',
+            'refine' => false
         ],
         [
             'name' => 'Creamhilt Token',
             'price' => '0.10',
-            'id' => '3115'
+            'id' => '3115',
+            'refine' => false
         ],
         [
             'name' => 'Sbanhealt Token',
             'price' => '0.10',
-            'id' => '3116'
+            'id' => '3116',
+            'refine' => false
         ],
         [
             'name' => 'Lazrigees Token',
             'price' => '0.10',
-            'id' => '3117'
+            'id' => '3117',
+            'refine' => false
         ],
         [
             'name' => 'Squagul Token',
             'price' => '0.10',
-            'id' => '3118'
+            'id' => '3118',
+            'refine' => false
         ],
         [
             'name' => 'Guindull Token',
             'price' => '0.10',
-            'id' => '3119'
+            'id' => '3119',
+            'refine' => false
         ],
         [
             'name' => 'Zhulinxian Token',
             'price' => '0.10',
-            'id' => '3114'
+            'id' => '3114',
+            'refine' => false
         ],
         [
             'name' => 'Oxylus Helm',
@@ -1726,12 +1733,14 @@ return [
         [
             'name' => 'Seal of Power',
             'price' => '0.10',
-            'id' => '3130'
+            'id' => '3130',
+            'refine' => false
         ],
         [
             'name' => 'Seal of Wisdom',
             'price' => '0.10',
-            'id' => '3131'
+            'id' => '3131',
+            'refine' => false
         ],
         [
             'name' => 'Seal of Spirit',
@@ -1742,12 +1751,14 @@ return [
         [
             'name' => 'Seal of Hate',
             'price' => '0.10',
-            'id' => '3133'
+            'id' => '3133',
+            'refine' => false
         ],
         [
             'name' => 'Seal of Death',
             'price' => '0.10',
-            'id' => '3134'
+            'id' => '3134',
+            'refine' => false
         ],
         [
             'name' => 'RPA',
