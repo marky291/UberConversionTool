@@ -53,6 +53,5 @@ class UserTest extends TestCase
         $conversion = new Conversions($storage->merge($storage2), app(DonationItems::class));
 
         $this->assertCount(3, $conversion->items);
-
     }
 }

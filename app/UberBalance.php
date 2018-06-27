@@ -44,7 +44,7 @@ class UberBalance extends Model
      */
     public static function addPending(int $balance, LoginBG $reciever)
     {
-        $row =  UberBalance::firstOrCreate([], ['account_id' => $reciever->account_id]);
+        $row =  UberBalance::firstOrCreate(['account_id' => $reciever->account_id], []);
 
         return $row->increment('pending', $balance);
     }

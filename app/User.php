@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
  * @property string $userid
  * @property string $user_pass
  * @property int $level
+ * @property int $state
  * @property Collection $characters
  * @property Storage storage
 e *
@@ -116,5 +117,13 @@ class User extends Authenticatable
         return $collection;
     }
 
-
+    /**
+     * Check if the user is a banned account.
+     *
+     * @return bool
+     */
+    public function isBanned()
+    {
+        return $this->state == 5;
+    }
 }

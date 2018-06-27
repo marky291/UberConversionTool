@@ -12,13 +12,45 @@
         </nav>
     </div>
 
-    <div class="container">
-        @if (session('confirmation'))
+    @if (session('confirmation'))
+        <div class="container">
             <div class="alert alert-success">
                 {{ session('confirmation') }}
             </div>
-        @endif
-    </div>
+        </div>
+    @endif
+
+    @if (session('middleware'))
+        <div class="container">
+            <div class="alert alert-danger">
+                {{ session('middleware') }}
+            </div>
+        </div>
+    @endif
+
+    @if (app()->environment('local'))
+        <div class="container">
+            <div class="alert alert-danger">
+                <b>Currently running debug mode</b>, items will not be deleted, ubers will still process! <br>
+                GMS and banned accounts are allowed to be used while in debug mode!<br>
+            </div>
+        </div>
+    @endif
+
+    @if((auth()->user()->level > 0 || auth()->user()->isBanned()) && app()->environment('local'))
+        <div class="container">
+            <div class="alert alert-dark">
+                <b>Debug Mode:</b>, <br>
+                Your account is not allowed to request an item conversion! GTFO. <br>
+                Reason:
+                @if (auth()->user()->isBanned())
+                    Banned
+                @else
+                    GM Account
+                @endif
+            </div>
+        </div>
+    @endif
 
     <div class="landing container mb-5">
         <div class="row">
@@ -36,15 +68,22 @@
                     <div id="succubus" style="height:100%; width:100%"></div>
                 </div>
                 <div class="col-8">
-                    @if(auth()->user()->level > 0)
-                        You are not allowed to convert items as a GM! GTFO!
+                    @if((auth()->user()->level > 0 || auth()->user()->isBanned()) && !app()->environment('local'))
+                        Your account is not allowed to request an item conversion! GTFO. <br>
+                        <br>
+                        Reason:
+                        @if (auth()->user()->isBanned())
+                            Banned
+                        @else
+                            GM Account
+                        @endif
                     @else
-                        <form  method="POST" action="{{ route('checkout') }}" autocomplete="off">
+                        <form method="POST" action="{{ route('checkout') }}" autocomplete="off">
                             @csrf
 
                             <div class="form-group">
                                 <label for="username">BG Username</label>
-                                <input type="text" name="username" id="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="" aria-describedby="usernameHelp">
+                                <input type="text" name="username" id="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="" aria-describedby="usernameHelp" autofocus>
                                 @if ($errors->has('username'))
                                     <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('username') }}</strong>
@@ -56,7 +95,7 @@
 
                             <div class="form-group">
                                 <label for="password">BG Password</label>
-                                <input type="password" name="password" id="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="" aria-describedby="passwordHelp">
+                                <input type="password" name="password" id="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="" aria-describedby="passwordHelp" autofocus>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>

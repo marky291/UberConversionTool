@@ -6,7 +6,9 @@ use App\Cart;
 use App\Classes\Conversions;
 use App\Classes\DonationItems;
 use App\Inventory;
+use App\LoginBG;
 use App\Storage;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
@@ -15,6 +17,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ConversionTest extends TestCase
 {
+
+    use WithoutMiddleware;
+
     /**
      * Parent boot.
      */
@@ -82,6 +87,21 @@ class ConversionTest extends TestCase
         $this->assertEquals(2000, $conversion->getTotalPrice());
     }
 
+    /**
+     * @test
+     */
+    public function test_converted_items_go_to_correct_account_id()
+    {
+        $this->signIn(['level' => 0]);
+
+        $user = $this->model('App\LoginBG', ['account_id' => 2593445]);
+
+        $this->model('App\Storage', ['nameid' => 3180, 'amount' => 1, 'refine' => 10, 'account_id' => auth()->user()->account_id]);
+
+        $this->post('/convert', ['username' => $user->userid, 'password' => 'password']);
+
+        $this->assertDatabaseHas('uber_balance', ['account_id' => $user->account_id], 'xilero_bg');
+    }
 
 
     private function generateItems()

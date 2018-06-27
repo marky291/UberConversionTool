@@ -17,7 +17,7 @@ class ConvertController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('disableGM');
+        $this->middleware(['check.player.level', 'check.player.state']);
     }
 
     /**
@@ -42,7 +42,6 @@ class ConvertController extends Controller
         if (!$receiver) {
             return redirect()->route('overview')->withErrors(['username' => "Account information incorrect or does not exist for username {$data['username']}"]);
         }
-
 
         // generate the conversion tool.
         $conversion = new Conversions(auth()->user()->getInventory(), app(DonationItems::class));
