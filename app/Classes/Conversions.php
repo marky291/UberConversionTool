@@ -68,7 +68,7 @@ class Conversions
     private function parseUsable(Collection $items)
     {
         return $items->filter(function(ItemInterface $item) {
-            return $this->donations->has($item->nameid);
+            return $this->donations->has($item->nameid) && $this->donations->hasMinimumRefineCount($item);
         });
     }
 

@@ -73,7 +73,7 @@ class ConversionTest extends TestCase
         $this->model('App\Inventory', ['nameid' => 3187, 'amount' => 1, 'char_id' => $character->char_id]);
         $this->model('App\Inventory', ['nameid' => 3185, 'amount' => 1, 'char_id' => $character->char_id]);
         $this->model('App\Storage', ['nameid' => 3180, 'amount' => 1, 'account_id' => auth()->user()->account_id]);
-        $this->model('App\Cart', ['nameid' => 2506, 'amount' => 1, 'char_id' => $character->char_id]);
+        $this->model('App\Cart', ['nameid' => 2506, 'amount' => 1, 'refine' => 10, 'char_id' => $character->char_id]);
 
         Queue::fake();
         $response = $this->post('/convert', ['username' => $account->userid, 'password' => 'password']);

@@ -47,8 +47,8 @@ class UserTest extends TestCase
     {
         $user = $this->model('App\User');
 
-        $storage = $this->collect('App\Storage', ['account_id' => $user->account_id, 'nameid' => 5013], 3);
-        $storage2 = $this->collect('App\Storage', ['account_id' => $user->account_id, 'nameid' => 5015], 3);
+        $storage = $this->collect('App\Storage', ['account_id' => $user->account_id, 'refine' => 10, 'nameid' => 5013], 3);
+        $storage2 = $this->collect('App\Storage', ['account_id' => $user->account_id, 'refine' => 10, 'nameid' => 5015], 3);
 
         $conversion = new Conversions($storage->merge($storage2), app(DonationItems::class));
 

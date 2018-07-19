@@ -47,6 +47,22 @@ class DonationItems extends Collection
     }
 
     /**
+     * Get the minimum refine rate of an item from the donation
+     * configurations file.
+     *
+     * @param $item
+     * @return mixed
+     */
+    public function getRefineMin($item)
+    {
+        if (isset($this->lookup($item)['refineMin'])) {
+            return $this->lookup($item)['refineMin'];
+        }
+
+        return 0;
+    }
+
+    /**
      * @param ItemInterface $item
      * @return float|\Illuminate\Config\Repository|int|mixed
      * @throws \Exception
@@ -105,6 +121,7 @@ class DonationItems extends Collection
 
     /**
      * We only want to keep the items that we can actually use.
+     * This filter sorts the collection to only have items for converter.
      *
      * @param Collection $items
      * @return Collection
@@ -129,5 +146,16 @@ class DonationItems extends Collection
         }
 
         return $this->get($item);
+    }
+
+    /**
+     * Check the item has the minimum requirement level.
+     *
+     * @param $item
+     * @return bool
+     */
+    public function hasMinimumRefineCount(ItemInterface $item)
+    {
+        return $item->refine >= $this->getRefineMin($item);
     }
 }

@@ -36,7 +36,7 @@ return [
         8 => 70,
         9 => 80,
         10 => 100,
-        'min' => 10,
+        'refineMin' => 10,
     ],
 
     /*
@@ -1525,48 +1525,48 @@ return [
         ],
         [
             'name' => 'Black Helm',
-            'price' => '10',
+            'price' => 10,
             'id' => '5088'
         ],
         [
             'name' => 'Equality Wings',
-            'price' => '10',
+            'price' => 10,
             'id' => '5037'
         ],
         [
+            'id' => '5013',
             'name' => 'Lord Kahos Horn',
-            'price' => '10',
-            'min' => 10,
-            'id' => '5013'
+            'refineMin' => 10,
+            'price' => 10
         ],
         [
             'name' => 'Muffler',
-            'price' => '10',
-            'min' => 10,
+            'price' => 10,
+            'refineMin' => 10,
             'id' => '2504'
         ],
         [
             'name' => 'Manteau',
-            'price' => '10',
-            'min' => 10,
+            'price' => 10,
+            'refineMin' => 10,
             'id' => '2506'
         ],
         [
             'name' => 'Guard',
-            'price' => '10',
-            'min' => 10,
+            'price' => 10,
+            'refineMin' => 10,
             'id' => '2102'
         ],
         [
             'name' => 'Buckler',
-            'price' => '10',
-            'min' => 10,
+            'price' => 10,
+            'refineMin' => 10,
             'id' => '2104'
         ],
         [
             'name' => 'Shield',
-            'price' => '10',
-            'min' => 10,
+            'price' => 10,
+            'refineMin' => 10,
             'id' => '2106'
         ],
         [

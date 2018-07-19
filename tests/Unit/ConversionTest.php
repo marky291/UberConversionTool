@@ -67,14 +67,14 @@ class ConversionTest extends TestCase
      */
     public function test_conversion_converts_item_correctly()
     {
-        $collection = $this->collect('App\Inventory', ['nameid' => 5013, 'refine' => 8, 'amount' => 1, 'card0' => 0, 'card1' => 0, 'card2' => 0, 'card3' => 0]);
+        $collection = $this->collect('App\Inventory', ['nameid' => 5013, 'refine' => 10, 'amount' => 1, 'card0' => 0, 'card1' => 0, 'card2' => 0, 'card3' => 0]);
 
         $item = $collection->first();
 
         $conversion = new Conversions($collection, app(DonationItems::class));
 
-        $this->assertEquals(7, $conversion->getTotalPrice());
-        $this->assertEquals(350, $conversion->getTotalValue());
+        $this->assertEquals(10, $conversion->getTotalPrice());
+        $this->assertEquals(500, $conversion->getTotalValue());
     }
 
     /**
@@ -115,6 +115,25 @@ class ConversionTest extends TestCase
        $conversion = new Conversions($collection, app(DonationItems::class));
 
        $this->assertEquals(0.90, $conversion->getTotalPrice());
+    }
+
+    /**
+     * @test
+     */
+    public function test_item_with_minimum_refine_rate_does_not_get_added()
+    {
+        $collection =  $this->collect('App\Inventory', ['nameid' => 5013, 'amount' => 1, 'refine' => 9, 'card0' => 0, 'card1' => 0, 'card2' => 0, 'card3' => 0], 1);
+
+        $conversion = new Conversions($collection, app(DonationItems::class));
+
+        $this->assertEquals(0, $conversion->getTotalPrice());
+
+        $collection =  $this->collect('App\Inventory', ['nameid' => 5013, 'amount' => 1, 'refine' => 10, 'card0' => 0, 'card1' => 0, 'card2' => 0, 'card3' => 0], 1);
+
+        $conversion = new Conversions($collection, app(DonationItems::class));
+
+        $this->assertEquals(10, $conversion->getTotalPrice());
+
     }
 
     /**
