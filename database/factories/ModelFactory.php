@@ -141,3 +141,51 @@ $factory->define(App\Storage::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\LoginBG::class, function (Faker\Generator $faker) {
+    return [
+        'userid' => $faker->word,
+        'user_pass' => $faker->word,
+        'sex' => $faker->word,
+        'email' => $faker->safeEmail,
+        'group_id' => $faker->boolean,
+        'state' => $faker->randomNumber(),
+        'unban_time' => $faker->randomNumber(),
+        'expiration_time' => $faker->randomNumber(),
+        'logincount' => $faker->randomNumber(),
+        'lastlogin' => $faker->dateTimeBetween(),
+        'last_ip' => $faker->word,
+        'birthdate' => $faker->date(),
+        'character_slots' => $faker->boolean,
+        'pincode' => $faker->word,
+        'pincode_change' => $faker->randomNumber(),
+        'remember_token' => str_random(10),
+        'last_unique_id' => $faker->randomNumber(),
+        'blocked_unique_id' => $faker->randomNumber(),
+        'modified_date' => $faker->dateTimeBetween(),
+        'creation_date' => $faker->dateTimeBetween(),
+    ];
+});
+
+$factory->define(App\UberBalance::class, function (Faker\Generator $faker) {
+    return [
+        'current' => $faker->randomNumber(),
+        'points' => $faker->randomNumber(),
+        'coins' => $faker->randomNumber(),
+        'pending' => $faker->randomNumber(),
+        'total' => $faker->randomNumber(),
+        'updated' => $faker->dateTimeBetween(),
+    ];
+});
+
+$factory->define(App\UberTransactions::class, function (Faker\Generator $faker) {
+    return [
+        'id' => $faker->randomNumber(),
+        'ip_address' => $faker->word,
+        'outcome' => $faker->randomNumber(),
+        'income' => $faker->randomNumber(),
+        'balance' => $faker->randomNumber(),
+        'type' => $faker->randomNumber(),
+        'timestamp' => $faker->dateTimeBetween(),
+    ];
+});
+

@@ -68,10 +68,8 @@
                     @endif
                 </div>
 
-                <div class="actions mt-4">
-
-                    <button type="submit" class="btn btn-primary">Login to Convert OS Items!</button>
-
+                <div class="actions mt-4 d-flex">
+                    <button type="submit" class="btn btn-dark mr-1">Login to Convert OS Items!</button>
                 </div>
 
             </form>

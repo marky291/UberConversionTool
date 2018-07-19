@@ -12,6 +12,8 @@ use Illuminate\Support\Collection;
  * @property string $user_pass
  * @property int $level
  * @property int $state
+ * @property string $last_ip
+ * @property string $email
  * @property Collection $characters
  * @property Storage storage
 e *

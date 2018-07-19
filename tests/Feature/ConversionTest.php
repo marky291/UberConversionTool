@@ -11,12 +11,16 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PageTest extends TestCase
+class ConversionTest extends TestCase
 {
     use WithoutMiddleware;
 
+    use RefreshDatabase;
+
     public function test_authentication_is_required_to_view_the_homepage()
     {
+        $this->withMiddleware();
+
         $this->withExceptionHandling();
 
         $this->get('/')->assertRedirect('/login');
@@ -27,7 +31,7 @@ class PageTest extends TestCase
      */
     public function test_gm_levels_cannot_convert()
     {
-        $this->signIn();
+        $this->withMiddleware()->signIn();
 
         $character = $this->model('App\Character', ['account_id' => auth()->user()->account_id]);
         $this->model('App\Inventory', ['nameid' => 3187, 'char_id' => $character->char_id]);
@@ -37,9 +41,7 @@ class PageTest extends TestCase
         $this->model('App\Storage', ['nameid' => 844, 'account_id' => auth()->user()->account_id]);
         $this->model('App\Cart', ['nameid' => 3001, 'char_id' => $character->char_id]);
 
-        $this->get('/')
-            ->assertSee("You are not allowed to convert items as a GM! GTFO!")
-            ->assertOk();
+        $this->get('/')->assertSee("Your account is not allowed to request an item conversion!")->assertSee('GM Account');
     }
 
     /**

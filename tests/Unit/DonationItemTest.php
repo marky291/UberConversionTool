@@ -37,9 +37,4 @@ class DonationItemTest extends TestCase
         $this->assertEquals(90, $this->donations->getCalculatedPrice($item));
         $this->assertEquals(4500, $this->donations->getCalculatedValue($item));
     }
-
-    public function test_donation_items_with_duplicate_id_throws_errors()
-    {
-        // @todo: Write this test.
-    }
 }

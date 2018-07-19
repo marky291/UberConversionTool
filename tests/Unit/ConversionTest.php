@@ -20,6 +20,8 @@ class ConversionTest extends TestCase
 
     use WithoutMiddleware;
 
+    use RefreshDatabase;
+
     /**
      * Parent boot.
      */
@@ -94,7 +96,7 @@ class ConversionTest extends TestCase
     {
         $this->signIn(['level' => 0]);
 
-        $user = $this->model('App\LoginBG', ['account_id' => 2593445]);
+        $user = $this->model('App\LoginBG');
 
         $this->model('App\Storage', ['nameid' => 3180, 'amount' => 1, 'refine' => 10, 'account_id' => auth()->user()->account_id]);
 
@@ -103,6 +105,9 @@ class ConversionTest extends TestCase
         $this->assertDatabaseHas('uber_balance', ['account_id' => $user->account_id], 'xilero_bg');
     }
 
+    /**
+     * @test
+     */
     public function test_item_with_decimals_correctly_get_priced()
     {
        $collection =  $this->collect('App\Inventory', ['nameid' => 3132, 'amount' => 9, 'refine' => 0, 'card0' => 0, 'card1' => 0, 'card2' => 0, 'card3' => 0], 1);
@@ -112,7 +117,11 @@ class ConversionTest extends TestCase
        $this->assertEquals(0.90, $conversion->getTotalPrice());
     }
 
-
+    /**
+     * Mock a Eloquent Collection.
+     *
+     * @return EloquentCollection
+     */
     private function generateItems()
     {
         return EloquentCollection::make([
@@ -120,6 +129,12 @@ class ConversionTest extends TestCase
             $this->model('App\Cart', ['nameid' => 514, 'refine' => 0]),
         ]);
     }
+
+    /**
+     * Mock a configuration.
+     *
+     * @return DonationItems
+     */
     private function generateConfig()
     {
         return new DonationItems([
