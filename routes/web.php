@@ -19,4 +19,4 @@ Route::post('/convert', 'ConvertController@checkout')->middleware(['auth', 'web'
 //
 //// recovery states.
 //Route::get('/recovery/success', 'RecoveryController@success')->middleware(['web', 'auth'])->name('recovery.success');
-//Route::get('/recovery/failed', 'RecoveryController@failed')->middleware(['web', 'guest'])->name('recovery.failed');
+Route::get('/recovery/failed', 'RecoveryController@failed')->middleware(['web', 'guest'])->name('recovery.failed');

@@ -82,6 +82,7 @@
 
                     <div class="actions mt-4 d-flex">
                         <button type="submit" class="btn btn-dark mr-1">Login to Convert OS Items!</button>
+                        <a href="{{ route('recovery.failed') }}" class="btn btn-outline-dark">Recover</a>
                     </div>
 
                 </form>
