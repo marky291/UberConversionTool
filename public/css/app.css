@@ -10447,21 +10447,30 @@ a.text-dark:focus {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   text-align: center;
-  padding: 5px 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border: 1px solid rgba(56, 92, 129, 0.19);
   -webkit-box-shadow: 0px 2px 7px 1px #f1f1f1;
           box-shadow: 0px 2px 7px 1px #f1f1f1;
   background-color: white;
 }
 
-.items .item .cards {
+.items .item .footer .cards {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.items .item .cards .item-card {
+.items .item .footer .cards .item-card {
   width: 25px;
   height: 25px;
 }
@@ -10474,6 +10483,24 @@ a.text-dark:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.vh-100 {
+  height: 100vh;
+}
+
+.lh-2 {
+  line-height: 2em;
+}
+
+.tw-shadow {
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.tw-shadow-inner {
+  -webkit-box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+          box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
 }
 
 #succubus {

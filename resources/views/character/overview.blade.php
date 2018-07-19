@@ -144,7 +144,7 @@
         @if ($convertable->items)
             @foreach ($convertable->items->chunk(4) as $items)
 
-                <div class="row items mb-3">
+                <div class="row items mb-4">
 
                     @foreach($items as $item)
 

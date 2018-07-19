@@ -30,17 +30,22 @@ $blue-accent: #385c81;
 
   .item {
     flex: 1;
+    display: flex;
     text-align: center;
-    padding: 5px 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    //padding: 5px 10px;
     border: 1px solid rgba(56, 92, 129, 0.19);
     box-shadow: 0px 2px 7px 1px #f1f1f1;
     background-color: white;
 
-    .cards {
-      display: flex;
-      .item-card {
-        width: 25px;
-        height: 25px;
+    .footer {
+      .cards {
+        display: flex;
+        .item-card {
+          width: 25px;
+          height: 25px;
+        }
       }
     }
   }

@@ -133,7 +133,6 @@ class ConversionTest extends TestCase
         $conversion = new Conversions($collection, app(DonationItems::class));
 
         $this->assertEquals(10, $conversion->getTotalPrice());
-
     }
 
     /**
