@@ -1,15 +1,34 @@
 .vh-100 {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .lh-2 {
   line-height: 2em;
 }
 
+.my-8 {
+  margin-bottom: 8em;
+  margin-top: 8em;
+}
 .tw-shadow {
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+}
+.tw-shadow-md {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,.12), 0 2px 4px 0 rgba(0,0,0,.08);
 }
 
 .tw-shadow-inner {
   box-shadow: inset 0 2px 4px 0 rgba(0,0,0,.06);
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.tracking-wide {
+  letter-spacing: 0.05em;
+}
+
+.background-white-transparent {
+  background: rgba(255, 255, 255, 0.1);
 }

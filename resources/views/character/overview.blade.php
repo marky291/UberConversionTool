@@ -52,122 +52,127 @@
         </div>
     @endif
 
-    <div class="landing container mb-5">
-        <div class="row">
-            <h1 class="">Welcome {{ ucfirst( Auth()->user()->userid) }}!</h1>
-            <p class="mb-5 text-justify">
-                This conversion tool has been created and made available by Marky as a unique and awesome way of
-                keeping track of your items available for conversion for the XileRO BG Server from OS, to make it easy
-                we compile all your items from <b>storage</b>, <b>inventory</b> & <b>cart</b>, it is important
-                to note that as more items become available for conversion you will be able to use this page again and
-                process another conversion for those extra items. <b>Thank you for your continued support of XileRO!</b>
-            </p>
+    <div class="landing container my-8">
+        <h1 class="">Welcome {{ ucfirst( Auth()->user()->userid) }}!</h1>
+        <p class="mb-5 text-justify">
+            This conversion tool has been created and made available by Marky as a unique and awesome way of
+            keeping track of your items available for conversion for the XileRO BG Server from OS, to make it easy
+            we compile all your items from <b>storage</b>, <b>inventory</b> & <b>cart</b>, it is important
+            to note that as more items become available for conversion you will be able to use this page again and
+            process another conversion for those extra items. <b>Thank you for your continued support of XileRO!</b>
+        </p>
 
-            <div class="row mt-3 mb-5">
-                <div class="col-4">
-                    <div id="succubus" style="height:100%; width:100%"></div>
-                </div>
-                <div class="col-8">
-                    @if((auth()->user()->level > 0 || auth()->user()->isBanned()) && !app()->environment('local'))
-                        Your account is not allowed to request an item conversion! GTFO. <br>
-                        <br>
-                        Reason:
-                        @if (auth()->user()->isBanned())
-                            Banned
-                        @else
-                            GM Account
-                        @endif
+        <div class="row mt-3 mb-5">
+            <div class="col-12 col-lg-4">
+                <div id="succubus" style="height:100%; width:100%"></div>
+            </div>
+            <div class="col-12 col-lg-8">
+                @if((auth()->user()->level > 0 || auth()->user()->isBanned()) && !app()->environment('local'))
+                    Your account is not allowed to request an item conversion! GTFO. <br>
+                    <br>
+                    Reason:
+                    @if (auth()->user()->isBanned())
+                        Banned
                     @else
-                        <form method="POST" action="{{ route('checkout') }}" autocomplete="off">
-                            @csrf
+                        GM Account
+                    @endif
+                @else
+                    <form method="POST" action="{{ route('checkout') }}" autocomplete="off">
+                        @csrf
 
-                            <div class="form-group">
-                                <label for="username">BG Username</label>
-                                <input type="text" name="username" id="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="" aria-describedby="usernameHelp" autofocus>
-                                @if ($errors->has('username'))
-                                    <span class="invalid-feedback" role="alert">
+                        <div class="form-group">
+                            <label for="username">BG Username</label>
+                            <input type="text" name="username" id="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="" aria-describedby="usernameHelp" autofocus>
+                            @if ($errors->has('username'))
+                                <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('username') }}</strong>
                             </span>
-                                @else
-                                    <small id="usernameHelp" class="text-muted">Enter the username of your account on XileRO BG</small>
-                                @endif
-                            </div>
+                            @else
+                                <small id="usernameHelp" class="text-muted">Enter the username of your account on XileRO BG</small>
+                            @endif
+                        </div>
 
-                            <div class="form-group">
-                                <label for="password">BG Password</label>
-                                <input type="password" name="password" id="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="" aria-describedby="passwordHelp" autofocus>
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
+                        <div class="form-group">
+                            <label for="password">BG Password</label>
+                            <input type="password" name="password" id="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="" aria-describedby="passwordHelp" autofocus>
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>
                             </span>
-                                @else
-                                    <small id="passwordHelp" class="text-muted">Enter the password of your account on XileRO BG</small>
-                                @endif
-                            </div>
+                            @else
+                                <small id="passwordHelp" class="text-muted">Enter the password of your account on XileRO BG</small>
+                            @endif
+                        </div>
 
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input {{ $errors->has('checked') ? ' is-invalid' : '' }}" name="terms" id="terms" value="checked" checked required>
-                                    @if ($errors->has('checked'))
-                                        <span class="invalid-feedback" role="alert">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input {{ $errors->has('checked') ? ' is-invalid' : '' }}" name="terms" id="terms" value="checked" checked required>
+                                @if ($errors->has('checked'))
+                                    <span class="invalid-feedback" role="alert">
                                             <strong>By agreeing to this you accept our terms and conditions outlined below.</strong>
                                         </span>
-                                    @else
-                                        By agreeing to this you accept our terms and conditions outlined below.
-                                    @endif
-                                </label>
-                            </div>
+                                @else
+                                    By agreeing to this you accept our terms and conditions outlined below.
+                                @endif
+                            </label>
+                        </div>
 
-                            <div class="my-2">
-                                <small>
-                                    By taking part in this conversion form you hereby agree that the account is correct and is yours, that you
-                                    wish to convert all available items from OS to BG and that you accept that the XileRO team has no responsibility
-                                    in the lose of your items by sending to the wrong account.
-                                </small>
-                            </div>
+                        <div class="my-2">
+                            <small>
+                                By taking part in this conversion form you hereby agree that the account is correct and is yours, that you
+                                wish to convert all available items from OS to BG and that you accept that the XileRO team has no responsibility
+                                in the lose of your items by sending to the wrong account.
+                            </small>
+                        </div>
 
-                            <button type="submit" class="btn btn-primary mt-3">Convert Now!</button>
-                            <a href="#convertable-items" class="btn btn-outline-dark mt-3">View Items</a>
-                        </form>
-                    @endif
-                </div>
+                        <button type="submit" class="btn btn-primary mt-3">Convert Now!</button>
+                        <a href="#convertable-items" class="btn btn-outline-dark mt-3">View Items</a>
+                    </form>
+                @endif
             </div>
         </div>
     </div>
 
     <div class="container my-5" id="convertable-items">
-        <div class="standout d-flex">
-            <h5>Available Convertable Items</h5>
-            <div class="flex-fill text-right">Total Ubers: {{ $convertable->getTotalValue() }}, Total Price: ${{ $convertable->getTotalPrice() }}, Total Items: {{ $convertable->items->count() }}</div>
-        </div>
+        <div class="row">
+            <div class="standout mb-4 d-md-flex flex-fill flex-column flex-md-row px-2 py-4 align-items-md-center">
+                <h5 class="text-center m-3 col-12 col-md-6 text-md-left">Items Ready for Conversion</h5>
+                <div class="col-12 col-md-6 text-md-right d-flex text-center mt-4 mt-md-0">
+                    <span class="flex-fill text-center rounded background-white-transparent mx-1 tracking-wide">Total Ubers: {{ $convertable->getTotalValue() }}</span>
+                    <span class="flex-fill text-center rounded background-white-transparent mx-1 tracking-wide">Total Price: ${{ $convertable->getTotalPrice() }}</span>
+                    <span class="flex-fill text-center rounded background-white-transparent mx-1 tracking-wide">Total Items: {{ $convertable->items->count() }}</span>
+                </div>
+            </div>
 
-        @if ($convertable->items)
-            @foreach ($convertable->items->chunk(4) as $items)
+            @if ($convertable->items)
+                <div class="row items justify-content-around flex-fill">
+                    @foreach ($convertable->items->chunk(4) as $items)
 
-                <div class="row items mb-4">
+                        @foreach($items as $item)
 
-                    @foreach($items as $item)
+                            @include('items.item')
 
-                        @if ($loop->first)
-                            @include('items.item', ['class' => 'first'])
-                        @endif
+                            {{--@if ($loop->first)--}}
+                                {{--@include('items.item', ['class' => 'first'])--}}
+                            {{--@endif--}}
 
-                        @if (!$loop->first && !$loop->last)
-                            @include('items.item', ['class' => 'middle'])
-                        @endif
+                            {{--@if (!$loop->first && !$loop->last)--}}
+                                {{--@include('items.item', ['class' => 'middle'])--}}
+                            {{--@endif--}}
 
-                        @if ($loop->last)
-                            @include('items.item', ['class' => 'last'])
-                        @endif
+                            {{--@if ($loop->last)--}}
+                                {{--@include('items.item', ['class' => 'last'])--}}
+                            {{--@endif--}}
+
+                        @endforeach
+
 
                     @endforeach
-
                 </div>
-
-            @endforeach
-        @else
-            <h3>No items available for conversion right now!</h3>
-        @endif
+            @else
+                <h3>No items available for conversion right now!</h3>
+            @endif
+            </div>
     </div>
 
 @endsection

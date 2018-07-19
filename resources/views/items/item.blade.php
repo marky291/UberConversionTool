@@ -1,5 +1,5 @@
 
-<div class="item mx-3 {{ $class }}">
+<div class="item tw-shadow overflow-hidden mb-4">
     <div class="name bg-light py-2 tw-shadow">
         <b>{{ donationItem()->getName($item) }} x{{ $item->amount }}</b>
     </div>
@@ -8,16 +8,16 @@
             <img class="" src="{{ $item->image() }}" alt="{{ $item->nameid }}">
         </div>
         <div class="d-flex flex-fill">
-            <div class="stat text-justify align-self-center">
+            <div class="stat text-justify align-self-center tracking-wide">
                 {{--ID: <b>{{ $item->id }}</b> <br>--}}
-                Value: ${{ donationItem()->getCalculatedPrice($item) }} <br>
-                Refine: +{{ $item->refine }} <br>
-                Ubers: {{ donationItem()->getCalculatedValue($item) }}
+                <span class="font-weight-normal">Value</span>: ${{ donationItem()->getCalculatedPrice($item) }} <br>
+                <span class="font-weight-normal">Refine</span>: +{{ $item->refine }} <br>
+                <span class="font-weight-normal">Ubers</span>: {{ donationItem()->getCalculatedValue($item) }}
             </div>
         </div>
     </div>
     <div class="footer d-flex flex-row justify-content-between bg-light tw-shadow-inner">
-        <div class="cards flex-fill text-left p-2">
+        <div class="cards flex-fill text-left py-2 px-3">
 
             @foreach (donationItem()->getCardCollection($item) as $card)
                 <img class="item-card" src="{{ url('/images/card.png') }}"
@@ -28,7 +28,7 @@
             @endforeach
 
         </div>
-        <div class="location flex-fill text-right p-2">
+        <div class="location flex-fill text-right py-2 px-3">
             @if ($item instanceof \App\Storage)
                 <span class="font-weight-bold">Storage</span>
             @elseif ($item instanceof \App\Inventory)
