@@ -135,7 +135,7 @@
 
     <div class="container my-5" id="convertable-items">
         <div class="row">
-            <div class="standout mb-4 d-md-flex flex-fill flex-column flex-md-row px-2 py-4 align-items-md-center">
+            <div class="standout mb-4 d-md-flex flex-fill flex-column flex-md-row px-2 py-2 align-items-md-center">
                 <h5 class="text-center m-3 col-12 col-md-6 text-md-left">Items Ready for Conversion</h5>
                 <div class="col-12 col-md-6 text-md-right d-flex text-center mt-4 mt-md-0">
                     <span class="flex-fill text-center rounded background-white-transparent mx-1 tracking-wide">Total Ubers: {{ $convertable->getTotalValue() }}</span>
