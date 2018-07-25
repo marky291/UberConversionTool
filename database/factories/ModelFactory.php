@@ -189,3 +189,23 @@ $factory->define(App\UberTransactions::class, function (Faker\Generator $faker) 
     ];
 });
 
+$factory->define(App\Guild::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'char_id' => $faker->randomNumber(),
+        'master' => $faker->word,
+        'guild_lv' => $faker->boolean,
+        'connect_member' => $faker->boolean,
+        'max_member' => $faker->boolean,
+        'average_lv' => $faker->randomNumber(),
+        'exp' => $faker->randomNumber(),
+        'next_exp' => $faker->randomNumber(),
+        'skill_point' => $faker->boolean,
+        'mes1' => $faker->word,
+        'mes2' => $faker->word,
+        'emblem_len' => $faker->randomNumber(),
+        'emblem_id' => $faker->randomNumber(),
+        'emblem_data' => 'blob',
+    ];
+});
+

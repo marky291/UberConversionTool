@@ -5,6 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class Character
+ *
+ * @property int $char_id
+ * @property Guild $guild
+ *
+ * @package App
+ */
 class Character extends Model
 {
     /**
@@ -56,6 +64,26 @@ class Character extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'account_id', 'account_id');
+    }
+
+    /**
+     * Return the guild a character can belong to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne|Guild
+     */
+    public function guild()
+    {
+        return $this->hasOne('App\Guild', 'guild_id', 'guild_id');
+    }
+
+    /**
+     * Check if the character is the creator of the guild.
+     *
+     * @return bool
+     */
+    public function isGuildCreator()
+    {
+        return $this->guild->isCreatedBy($this);
     }
 
     /**

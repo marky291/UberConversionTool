@@ -99,7 +99,7 @@ class User extends Authenticatable
      */
     public function getInventory()
     {
-        $this->with('storage', 'characters.inventory', 'characters.cart');
+        $this->with('storage', 'characters.inventory', 'characters.cart', 'characters.guild.storage');
 
         $collection = new Collection;
 
@@ -107,12 +107,21 @@ class User extends Authenticatable
             $collection->push($storage);
         }
 
-        foreach ($this->characters as $character) {
+        /** @var Character $character */
+        foreach ($this->characters as $character)
+        {
             foreach ($character->inventory as $inventory) {
                 $collection->push($inventory);
             }
+
             foreach ($character->cart as $cart) {
                 $collection->push($cart);
+            }
+
+            if ($character->guild && $character->isGuildCreator()) {
+                foreach ($character->guild->storage as $gstorage) {
+                    $collection->push($gstorage);
+                }
             }
         }
 

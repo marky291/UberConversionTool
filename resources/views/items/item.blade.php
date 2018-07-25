@@ -35,6 +35,8 @@
                 <span class="font-weight-bold">Inventory</span>
             @elseif ($item instanceof \App\Cart)
                 <span class="font-weight-bold">Cart</span>
+            @elseif ($item instanceof \App\GuildStorage)
+                <span class="font-weight-bold">Guild Storage</span>
             @else
                 <span class="font-weight-bold">Unknown</span>
             @endif

@@ -69,15 +69,18 @@ class ConversionTest extends TestCase
     {
         $this->signIn(['level' => 0]);
         $account = $this->model('App\LoginBG', ['group_id' => 0]);
-        $character = $this->model('App\Character', ['account_id' => auth()->user()->account_id]);
+        $character = $this->model('App\Character', ['account_id' => auth()->user()->account_id, 'guild_id' => 1]);
+        $guild = $this->model('App\Guild', ['guild_id' => 1, 'char_id' => $character->char_id, 'master' => $character->name]);
+
         $this->model('App\Inventory', ['nameid' => 3187, 'amount' => 1, 'char_id' => $character->char_id]);
         $this->model('App\Inventory', ['nameid' => 3185, 'amount' => 1, 'char_id' => $character->char_id]);
         $this->model('App\Storage', ['nameid' => 3180, 'amount' => 1, 'account_id' => auth()->user()->account_id]);
         $this->model('App\Cart', ['nameid' => 2506, 'amount' => 1, 'refine' => 10, 'char_id' => $character->char_id]);
+        $this->model('App\GuildStorage', ['nameid' => 5089, 'amount' => 1, 'refine' => 10, 'guild_id' => $guild->guild_id]);
 
         Queue::fake();
         $response = $this->post('/convert', ['username' => $account->userid, 'password' => 'password']);
-        Queue::assertPushed(ProcessItemConversion::class, 4);
+        Queue::assertPushed(ProcessItemConversion::class, 5);
 
         $response->assertRedirect('/');
     }
